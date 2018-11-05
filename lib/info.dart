@@ -36,6 +36,7 @@ class InfoState extends State<Info> {
             color: Colors.black,
           ),
         ),
+        backgroundColor: Theme.of(context).primaryColorLight,
         body: Container(
             child: PhotoView(
           imageProvider: AssetImage(
