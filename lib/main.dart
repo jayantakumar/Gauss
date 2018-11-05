@@ -3,8 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 //import 'package:vector_math/vector_math_64.dart' as vm;
 import 'info.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(new MyApp());
+void main() {
+  SystemChrome.setEnabledSystemUIOverlays([]);
+  runApp(new MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -19,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color.fromRGBO(31, 42, 48, 1.0),
-        primaryColorLight: Color.fromRGBO(0, 24, 38, 1.0),
+        primaryColorLight: Color.fromRGBO(1, 24, 38, 1.0),
         primaryColorDark: Color(0x000000),
         fontFamily: "MyRob",
       ),
@@ -32,6 +36,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  SvgPicture s = SvgPicture.asset("assets/myg.svg");
   List<String> _topics = [
     "ALGEBRA",
     "AREA AND VOLUME",

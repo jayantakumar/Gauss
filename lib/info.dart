@@ -1,41 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:photo_view/photo_view.dart';
 
-class Info extends StatelessWidget {
+class Info extends StatefulWidget {
   final String _title;
   Info(this._title);
 
   @override
+  InfoState createState() {
+    return new InfoState();
+  }
+}
+
+class InfoState extends State<Info> {
+  final List<String> img = ["svg/imp.png", "svg/imp.png", "svg/imp.png"];
+
+  double a = 0.3;
+
+  void change() {
+    setState(() {
+      a = 0.28;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(
-            _title,
-            style: TextStyle(fontFamily: "MyRob", fontSize: 20.0),
-            textAlign: TextAlign.center,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "/");
+          },
+          backgroundColor: Colors.yellow,
+          elevation: 10.0,
+          child: Icon(
+            Icons.close,
+            color: Colors.black,
           ),
-          elevation: 0.0,
-          centerTitle: true,
         ),
-        body: Column(
-            //mainAxisAlignment: MainAxisAlignment.start,
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Center(
-                  child: Container(
-                    height: 80.0,
-                    width: 80.0,
-                    child: SvgPicture.asset(
-                      "assets/a.svg",
-                      placeholderBuilder: (BuildContext context) {
-                        return Text("loading..");
-                      },
-                    ),
-                  ),
-                ),
-              )
-            ]));
+        body: Container(
+            child: PhotoView(
+          imageProvider: AssetImage(
+            "svg/imp.png",
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
+          minScale: a,
+          maxScale: 2.0,
+          scaleStateChangedCallback: (ai) {
+            change();
+          },
+          gaplessPlayback: true,
+        )));
   }
 }
