@@ -25,15 +25,24 @@ class InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.pushNamed(context, "/");
           },
-          backgroundColor: Colors.yellow,
+          backgroundColor: Color(0xFFFFFCF44),
           elevation: 10.0,
-          child: Icon(
+          icon: Icon(
             Icons.close,
             color: Colors.black,
+          ),
+          label: Text(
+            "Close",
+            style: TextStyle(color: Colors.black),
+          ),
+          highlightElevation: 0.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
           ),
         ),
         backgroundColor: Theme.of(context).primaryColorLight,

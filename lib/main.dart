@@ -3,8 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 //import 'package:vector_math/vector_math_64.dart' as vm;
 import 'info.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(new MyApp());
 }
 
