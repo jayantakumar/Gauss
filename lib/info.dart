@@ -7,13 +7,26 @@ class Info extends StatefulWidget {
 
   @override
   InfoState createState() {
-    return new InfoState();
+    return new InfoState(_title);
   }
 }
 
 class InfoState extends State<Info> {
-  final List<String> img = ["svg/imp.png", "svg/imp.png", "svg/imp.png"];
-
+  String _title;
+  InfoState(this._title);
+  final Map<String, int> img = {
+    "ALGEBRA": 0,
+    "AREA AND VOLUME": 1,
+    "TRIGNOMETRY": 2,
+    "LIMITS": 3,
+    "DERIVATIVES": 4,
+    "INTEGRALS": 5,
+    "PROBABLITY": 6,
+    "STATISTICS": 7,
+    "TRANSFORMATIONS": 8,
+    "SERIES EXPANSIONS": 9
+  };
+  final List<String> path = ["svg/imp.png", "svg/aandv.png", "", ""];
   double a = 0.3;
 
   void change() {
@@ -25,20 +38,16 @@ class InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, "/");
           },
-          backgroundColor: Color(0xFFFFFCF44),
+          backgroundColor: Color(0xFF72DEFF),
           elevation: 10.0,
-          icon: Icon(
+          child: Icon(
             Icons.close,
             color: Colors.black,
-          ),
-          label: Text(
-            "Close",
-            style: TextStyle(color: Colors.black),
           ),
           highlightElevation: 0.0,
           shape: RoundedRectangleBorder(
@@ -49,7 +58,7 @@ class InfoState extends State<Info> {
         body: Container(
             child: PhotoView(
           imageProvider: AssetImage(
-            "svg/imp.png",
+            path[img[_title]],
           ),
           backgroundColor: Theme.of(context).primaryColor,
           minScale: a,
